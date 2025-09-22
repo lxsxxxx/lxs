@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>个人主页</title>
+    <style>
+        body {
+            font-family: "仿宋体", serif;
+            margin: 0;
+            padding: 20px;
+            color: black;
+        }
+        .subtitle {
+            font-family: "宋体", serif;
+            font-weight: bold;
+            color: #46b8da; /* 提夫尼蓝色 */
+        }
+        .nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .nav a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: black;
+        }
+        .info {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .photo {
+            border: 1px solid black;
+            width: 100px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        .contact p {
+            margin: 5px 0;
+        }
+        .edu ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .edu li {
+            margin: 10px 0;
+        }
+        .skills, .hobbies, .self-eval {
+            margin-top: 20px;
+        }
+        .skills p, .hobbies p, .self-eval p {
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <a href="#">首页</a>
+        <a href="#">关于</a>
+        <a href="#">技能</a>
+        <a href="#">经历</a>
+        <a href="#">联系方式</a>
+    </div>
+
+    <div class="info">
+        <div class="photo">照片</div>
+        <div class="contact">
+            <p>姓名：李××</p>
+            <p>手机：188××××</p>
+            <p>邮箱：161××××@qq.com</p>
+            <p>联系地址：河北省×××</p>
+        </div>
+    </div>
+
+    <div class="edu">
+        <h3 class="subtitle">学业背景</h3>
+        <ul>
+            <li>学校：山东××大学</li>
+            <li>学习时间：2024-2028(本科)</li>
+            <li>专业：计算机科学与技术</li>
+            <li>优势学科及分数：高等数学 90分</li>
+            <li>比赛经历：××××大赛二等奖</li>
+        </ul>
+    </div>
+
+    <div>
+        <h3 class="subtitle">在校期间职位</h3>
+        <p>××委员</p>
+        <p>学生会成员</p>
+        <p>××志愿者</p>
+    </div>
+
+    <div class="skills">
+        <h3 class="subtitle">擅长技能</h3>
+        <p>C语言编程</p>
+        <p>java编程</p>
+        <p>网站设计</p>
+    </div>
+
+    <div class="hobbies">
+        <h3 class="subtitle">兴趣爱好</h3>
+        <p>篮球、羽毛球、摄影、阅读</p>
+    </div>
+
+    <div class="self-eval">
+        <h3 class="subtitle">自我评价</h3>
+        <p>积极主动，责任心强，具备良好的沟通能力</p>
+    </div>
+</body>
+</html>

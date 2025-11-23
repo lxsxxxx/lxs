@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>影像与文学讨论夜 · Film & Literature Talk</title>
+    <style>
+        /* 页面基础样式 */
+        .page {
+            display: inline-block;
+            background-color: #FFECD6; /* 晨光杏色 */
+            box-shadow: 0 0 30px rgba(80, 58, 35, 0.25);
+            text-align: left;
+            max-width: 720px;
+            padding: 40px;
+            margin: 20px auto;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+            border-radius: 12px;
+        }
+
+        /* 并集选择器：统一标题样式 */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            color: #5a3921;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        /* 顶部标题区 */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(90, 57, 33, 0.1);
+        }
+
+        /* 活动介绍区 */
+        .intro-section {
+            margin-bottom: 40px;
+        }
+
+        /* ID选择器：强调重要提示 */
+        p#intro {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #d35400;
+            background-color: rgba(211, 84, 0, 0.08);
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        /* 表格样式 */
+        .table-section table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .table-section th {
+            background-color: #5a3921;
+            color: #FFECD6;
+            padding: 14px;
+            text-align: left;
+            font-weight: 500;
+        }
+
+        .table-section td {
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(90, 57, 33, 0.1);
+        }
+
+        .table-section tr:nth-child(even) {
+            background-color: rgba(255, 236, 214, 0.4);
+        }
+
+        .table-section tr:hover {
+            background-color: rgba(255, 236, 214, 0.7);
+        }
+
+        /* 后代选择器：div里的table里的超级链接 */
+        div table a {
+            color: #8e44ad;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        div table a:hover {
+            color: #9b59b6;
+            text-decoration: underline;
+        }
+
+        /* 链接伪类 */
+        a:link {
+            color: #3498db;
+        }
+        a:visited {
+            color: #9b59b6;
+        }
+        a:hover {
+            color: #e74c3c;
+            text-decoration: underline;
+        }
+        a:active {
+            color: #c0392b;
+        }
+
+        /* 带类名的链接 */
+        a.red {
+            color: #e74c3c;
+            font-weight: 500;
+        }
+        a.blue {
+            color: #3498db;
+            font-weight: 500;
+        }
+
+        /* 伪元素 */
+        p::first-letter {
+            font-size: 1.8em;
+            font-weight: 600;
+            color: #5a3921;
+            float: left;
+            line-height: 1;
+            margin-right: 4px;
+        }
+
+        div::first-line {
+            font-weight: 500;
+            color: #5a3921;
+        }
+
+        /* 页面链接区 */
+        .links-section {
+            margin: 40px 0;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .links-section div {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .links-section a {
+            padding: 10px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .links-section a:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        /* 底部公告区 */
+        .notice-section {
+            margin-top: 40px;
+            padding: 25px;
+            background-color: rgba(255, 255, 255, 0.4);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+
+        .notice-section div {
+            line-height: 1.8;
+            color: #5a3921;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .page {
+                padding: 25px;
+                margin: 10px;
+            }
+            
+            .links-section div {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .table-section {
+                overflow-x: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- ①顶部标题区 -->
+        <div class="header">
+            <h1>影像与文学讨论夜 · Film & Literature Talk</h1>
+        </div>
+
+        <!-- ②活动介绍区 -->
+        <div class="intro-section">
+            <h2 id="intro">活动介绍</h2>
+            <p>欢迎来到"影像与文学讨论夜"！在这里，我们将一起探索电影与文学之间的奇妙联系。本月我们将深入讨论《千与千寻》这部动画杰作，分析其中蕴含的成长主题与东方美学。</p>
+            <p>活动将以轻松愉快的氛围进行，我们会先一起观看精选片段，然后分享各自的感悟。无论你是电影爱好者还是文学发烧友，都能在这里找到共鸣。正如《小王子》中所说："真正重要的东西，用眼睛是看不见的。"</p>
+            <p id="intro">重要提示：请提前15分钟到达，活动全程禁止录音录像，尊重每位参与者的分享。</p>
+        </div>
+
+        <!-- ③活动报名信息表格区 -->
+        <div class="table-section">
+            <h3>活动报名名单</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>姓名</th>
+                        <th>讨论主题</th>
+                        <th>联系方式</th>
+                        <th>备注</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>李明</td>
+                        <td><a href="#">《千与千寻》中的成长隐喻</a></td>
+                        <td>13800138000</td>
+                        <td>文学系研究生</td>
+                    </tr>
+                    <tr>
+                        <td>王晓雨</td>
+                        <td><a href="#">宫崎骏的东方美学世界</a></td>
+                        <td>13900139000</td>
+                        <td>动画爱好者</td>
+                    </tr>
+                    <tr>
+                        <td>张文艺</td>
+                        <td><a href="#">从《小王子》看童话的深层含义</a></td>
+                        <td>13700137000</td>
+                        <td>法语专业</td>
+                    </tr>
+                    <tr>
+                        <td>陈诗韵</td>
+                        <td><a href="#">诗歌在电影中的艺术表现</a></td>
+                        <td>13600136000</td>
+                        <td>诗人</td>
+                    </tr>
+                    <tr>
+                        <td>刘影迷</td>
+                        <td><a href="#">《天堂电影院》的怀旧情怀</a></td>
+                        <td>13500135000</td>
+                        <td>影评人</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- ④页面链接区 -->
+        <div class="links-section">
+            <div>
+                <a href="https://hongchenwusdnu.github.io/bookstore/job4.html" class="red">查看往期活动照片</a>
+                <a href="https://lxsxxxx.github.io/lxs/job3.html" class="blue">在线咨询活动详情</a>
+            </div>
+        </div>
+
+        <!-- ⑤底部公告区 -->
+        <div class="notice-section">
+            <div class="notice">
+                <p>公告1：下次活动将于下月第一个周五举行，主题暂定为"经典文学改编电影赏析"，敬请期待！<br>欢迎提前报名，名额有限。</p>
+                <p>公告2：活动期间提供免费茶水和小点心，如有饮食禁忌请提前告知。<br>我们提倡环保，建议自带水杯。</p>
+                <p>公告3：本社团长期招募志愿者，协助活动组织和文案撰写。<br>有意者请联系活动组织者，我们将提供相应的实践证明。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

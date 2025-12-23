@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>在线购物折扣网站</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    .clock { font-size: 20px; margin-bottom: 10px; }
+    .tips { margin-top: 10px; color: green; }
+    table, th, td { border: 1px solid black; border-collapse: collapse; padding: 5px; }
+  </style>
+</head>
+<body>
+
+<h2>在线购物折扣系统</h2>
+<div class="clock" id="clock"></div>
+<div id="timeDiscountTip"></div>
+
+<script>
+  // 模拟时钟 + 时间折扣提醒
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours();
+    const m = now.getMinutes();
+    const s = now.getSeconds();
+    const timeStr = `${h}:${m < 10 ? '0' + m : m}:${s < 10 ? '0' + s : s}`;
+    document.getElementById('clock').innerText = `当前时间：${timeStr}`;
+
+    const tip = document.getElementById('timeDiscountTip');
+    if (m >= 0 && m <= 9) {
+      tip.innerHTML = '<p style="color:red;">✅ 当前处于每小时前10分钟，享受85折！</p>';
+    } else {
+      tip.innerHTML = '<p>⏳ 当前无时间折扣</p>';
+    }
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // 页面加载时提醒折扣
+  document.write('<p style="color:blue;">📢 欢迎访问购物网站！每小时前10分钟享受85折，VIP用户额外9折！</p>');
+</script>
+
+<hr>
+
+<form id="orderForm">
+  客户名称：<input type="text" id="customerName"><br>
+  商品单价：<input type="number" id="price" step="0.01"><br>
+  数量：<input type="number" id="quantity"><br>
+  客户类型：
+  <select id="isVip">
+    <option value="false">普通客户</option>
+    <option value="true">VIP客户</option>
+  </select><br>
+  是否加急：
+  <select id="isUrgent">
+    <option value="false">否</option>
+    <option value="true">是</option>
+  </select><br>
+  <button type="button" onclick="addOrder()">添加订单</button>
+</form>
+
+<div class="tips" id="tips"></div>
+
+<hr>
+
+<h3>卖家成交历史</h3>
+<div id="dashboard"></div>
+
+<script>
+  let history = [];
+
+  function addOrder() {
+    const name = document.getElementById('customerName').value.trim();
+    const price = parseFloat(document.getElementById('price').value);
+    const quantity = parseInt(document.getElementById('quantity').value);
+    const isVip = document.getElementById('isVip').value === 'true';
+    const isUrgent = document.getElementById('isUrgent').value === 'true';
+
+    // 校验
+    if (!name) { alert('客户名称不能为空'); return; }
+    if (isNaN(price) || price <= 0) { alert('单价必须是大于0的数字'); return; }
+    if (isNaN(quantity) || quantity <= 0 || quantity % 1 !== 0) { alert('数量必须是大于0的整数'); return; }
+
+    const now = new Date();
+    const minute = now.getMinutes();
+    const hitTimeDiscount = minute >= 0 && minute <= 9;
+
+    let baseTotal = price * quantity;
+    let afterVip = isVip ? baseTotal * 0.9 : baseTotal;
+    let afterUrgent = isUrgent ? afterVip * 1.1 : afterVip;
+
+    let finalTotal = afterUrgent;
+    if (hitTimeDiscount) finalTotal *= 0.85;
+
+    // ✅ 学号尾号8专属逻辑：普通客户 >200 减10元
+    if (!isVip && finalTotal > 200) {
+      finalTotal -= 10;
+      if (finalTotal < 0) finalTotal = 0;
+    }
+
+    // 构建提示
+    let tipsHtml = `<p>✅ 订单成功！</p>`;
+    tipsHtml += `<p>客户：${name}</p>`;
+    tipsHtml += `<p>基础总价：¥${baseTotal.toFixed(2)}</p>`;
+    if (isVip) tipsHtml += `<p>VIP折扣后：¥${afterVip.toFixed(2)}</p>`;
+    if (isUrgent) tipsHtml += `<p>加急费后：¥${afterUrgent.toFixed(2)}</p>`;
+    if (hitTimeDiscount) tipsHtml += `<p>时间折扣后：¥${finalTotal.toFixed(2)}</p>`;
+    if (!isVip && finalTotal > 200) tipsHtml += `<p>普通客户满200减10后：¥${finalTotal.toFixed(2)}</p>`;
+    tipsHtml += `<p><strong>最终总价：¥${finalTotal.toFixed(2)}</strong></p>`;
+
+    document.getElementById('tips').innerHTML = tipsHtml;
+
+    // 添加到历史记录
+    history.push({ name, price, quantity, isVip, isUrgent, finalTotal });
+    renderDashboard();
+  }
+
+  function renderDashboard() {
+    let html = '<table><tr><th>客户</th><th>单价</th><th>数量</th><th>VIP</th><th>加急</th><th>成交价</th></tr>';
+    for (let o of history) {
+      html += `<tr>
+        <td>${o.name}</td>
+        <td>¥${o.price.toFixed(2)}</td>
+        <td>${o.quantity}</td>
+        <td>${o.isVip ? '是' : '否'}</td>
+        <td>${o.isUrgent ? '是' : '否'}</td>
+        <td>¥${o.finalTotal.toFixed(2)}</td>
+      </tr>`;
+    }
+    html += '</table>';
+    document.getElementById('dashboard').innerHTML = html;
+  }
+</script>
+
+</body>
+</html>
